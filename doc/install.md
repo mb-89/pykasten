@@ -1,0 +1,1 @@
+tbd. list pipx and pip installation options
