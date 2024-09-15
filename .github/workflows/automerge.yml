@@ -14,7 +14,7 @@ jobs:
         runs-on: ubuntu-latest
         steps:
           - name: Enable auto-merge for bot PRs
-            run: gh pr merge --auto --squash --admin --subject "automatic merge to main" "$PR_URL" 
+            run: gh pr merge --auto --squash --admin --subject "automatic merge to main" "$PR_URL"
             env:
               PR_URL: ${{github.event.pull_request.html_url}}
               GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
