@@ -37,3 +37,18 @@ jobs:
       uses: diillson/auto-pull-request@v1.0.1
       with:
         destination_branch: "main"
+
+  alls-green:
+    if: always()
+
+    needs:
+    - test_on_py_os_marix
+    - pull-request
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Decide whether the needed jobs succeeded or failed
+      uses: re-actors/alls-green@release/v1
+      with:
+        jobs: ${{ toJSON(needs) }}

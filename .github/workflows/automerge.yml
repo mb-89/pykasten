@@ -1,0 +1,22 @@
+name: Auto-merge bot PRs
+
+on: 
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+    dependabot:
+        runs-on: ubuntu-latest
+        steps:
+          - name: nameprint
+            run: echo "GITHUB_ACTOR=${GITHUB_ACTOR}"
+          - name: Enable auto-merge for bot PRs
+            run: gh pr merge --auto --rebase "$PR_URL"
+            env:
+              PR_URL: ${{github.event.pull_request.html_url}}
+              GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
