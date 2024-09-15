@@ -4,8 +4,7 @@ on:
     - dev
 
 jobs:
-  test:
-    name: Test on py ${{ matrix.py }} and ${{ matrix.os }}
+  test_on_py_os_marix:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -28,10 +27,10 @@ jobs:
 
   pull-request:
     runs-on: ubuntu-latest
-    needs: [test]
+    needs: [test_on_py_os_marix]
     if: |
       always() && 
-      (needs.test.result == 'success')
+      (needs.test_on_py_os_marix.result == 'success')
     steps:
     - uses: actions/checkout@v4
     - name: pull-request
