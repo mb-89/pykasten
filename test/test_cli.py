@@ -1,6 +1,7 @@
+import pytest
+
 from pykasten import cli
 
-import pytest
 
 @pytest.mark.smoke
 def test_cli_basics():
@@ -8,3 +9,4 @@ def test_cli_basics():
     cli.run()
     cli.run("-h")
     cli.run("--version")
+    cli.run("repeat")

@@ -3,13 +3,22 @@
     // Hover to view descriptions of existing attributes.
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
+    "inputs": [
+        {
+            "id": "fileArguments",
+            "description": "The arguments to send to the debugger",
+            "type": "promptString",
+            "default": "",
+        }
+    ],
     "configurations": [
         {
             "name": "Python: Module",
             "type": "debugpy",
             "request": "launch",
             "module": "pykasten",
-            "justMyCode": true
+            "justMyCode": true,
+            "args": "repeat"
         },
         {
             "name": "Python: Debug Test",

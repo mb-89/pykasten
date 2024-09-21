@@ -9,6 +9,7 @@ packages = [{include = "pykasten", from = "src"}]
 
 [tool.poetry.dependencies]
 python = "^3.11"
+click = "^8.1.7"
 
 [tool.poetry.group.dev.dependencies]
 flake8 = "^7.1.1"
