@@ -1,5 +1,8 @@
 """Snippets and recipes that dont fit in a dedicated module."""
 
+import os
+import platform
+import subprocess
 from itertools import zip_longest
 
 
@@ -20,3 +23,17 @@ def grouper(iterable, n, *, incomplete="fill", fillvalue=None):
             return zip(*iterators)
         case _:  # pragma: no cover
             raise ValueError("Expected fill, strict, or ignore")
+
+
+def runInNewProcess(cmd):  # pragma: no cover
+    """Run the given cmd in a new process, setting all flags so that it detaches."""
+    # Testing this is difficult. On dev-pcs (usually windows)
+    # the unix path is not reached and on ci/cd servers the windows path is not reached.
+    # Therefore: no coverage. just trust me bro
+    iswin = platform.system() == "Windows"
+    if iswin:
+        ng = subprocess.CREATE_NEW_PROCESS_GROUP
+        dp = subprocess.DETACHED_PROCESS
+        subprocess.Popen(cmd, shell=True, creationflags=ng | dp)
+    else:
+        subprocess.Popen(cmd, preexec_fn=getattr(os, "setsid", None))

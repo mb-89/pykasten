@@ -22,9 +22,9 @@
         },
         {
             "name": "Python: Debug Test",
-            "type": "debugpy",
+            "type": "python",
             "request": "launch",
-            "program": "${file}",
+            "justMyCode": false,
             "purpose": ["debug-test"],
             "console": "integratedTerminal",
             "env": {"PYTEST_ADDOPTS": "--capture=sys --no-cov -s"}

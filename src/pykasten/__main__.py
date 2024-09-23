@@ -1,5 +1,5 @@
 """Python stuff i use more than once."""
 
-from pykasten import cli
+from pykasten import _cli
 
-cli.run()
+_cli.run()

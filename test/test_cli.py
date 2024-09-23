@@ -1,12 +1,12 @@
 import pytest
 
-from pykasten import cli
+from pykasten import _cli
 
 
 @pytest.mark.smoke
 def test_cli_basics():
     """Check that basic cli usage doesnt crash."""
-    cli.run()
-    cli.run("-h")
-    cli.run("--version")
-    cli.run("repeat")
+    _cli.run()
+    _cli.run("-h")
+    _cli.run("--version")
+    _cli.run("repeat")

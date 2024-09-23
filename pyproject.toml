@@ -8,8 +8,10 @@ readme = "README.md"
 packages = [{include = "pykasten", from = "src"}]
 
 [tool.poetry.dependencies]
-python = "^3.11"
+python = ">=3.11,<3.13"
 click = "^8.1.7"
+pyside6 = "^6.7.2"
+pyqtgraph = "^0.13.7"
 
 [tool.poetry.group.dev.dependencies]
 flake8 = "^7.1.1"
@@ -25,15 +27,14 @@ requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
-pykasten = "pykasten.cli:run"
+pykasten = "pykasten._cli:run"
 
 [tool.pytest.ini_options]
 addopts = "-v --capture=sys --cov=pykasten --cov-report term-missing"
 testpaths = ["test",]
 markers = [
     "smoke: marks tests as part of smoke-testing",
-    "gui: marks tests that open a gui",
-    "run: used to run a specific example, eg: poe test -m run --args <example name>"
+    "repeat: used to repeat the last commandline call with pytest."
 ]
 
 [tool.coverage.run]

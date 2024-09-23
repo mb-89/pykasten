@@ -12,10 +12,15 @@ class ExampleBrowser:
 
     def showGui(self, parentWidget=None):
         """Show the Examplebrowser."""
-        pass
+        from pykasten.examplebrowser import gui
+
+        g = gui.Gui(self)
+        title = "pykasten examples"
+        g.exec(parent=parentWidget, title=title)
 
 
-def runExample(src: Path | str, args: dict = {}):
+def runExample(src: Path | str, args: dict = {}) -> int:
     """Run a given example."""
     print(src)
     print(args)
+    return -1
