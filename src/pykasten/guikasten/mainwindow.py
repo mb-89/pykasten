@@ -60,6 +60,7 @@ class Win(qt.QtWidgets.QMainWindow):
 
     def log_acceptStreamHandler(self, h):
         """Accept a log streaming handler, map it to qt signals."""
+        self.construct()
         h.emitter.sig.connect(self.sb.setText)
         self.loghandlers.append(h)
 
