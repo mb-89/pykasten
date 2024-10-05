@@ -165,6 +165,7 @@ class StatusBar(qt.QtWidgets.QStatusBar):
             else:
                 f = None
             if f is None:
+                msg("warn", "mainwindow", "no stored window state found. abort.")
                 return
             state = json.loads(open(f, "r").read())
             dockArea.restoreState(state)
