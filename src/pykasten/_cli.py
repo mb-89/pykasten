@@ -54,7 +54,7 @@ def examples(name, args, show):
 @cli.command()
 @click.option("--nocache", is_flag=True, default=False, help="dont cache this call.")
 def repeat():
-    """Repeat the last cahced cli call (mainly used for debugging)."""
+    """Repeat the last cached cli call (mainly used for debugging)."""
 
 
 def get_cache_args() -> list:

@@ -6,6 +6,12 @@ import subprocess
 from itertools import zip_longest
 
 
+def startfile(x):
+    try:
+        os.startfile(x)
+    except BaseException: #doesnt work on linux
+        pass
+
 # from https://docs.python.org/3/library/itertools.html#itertools-recipes
 # we dont need high coverage here, since itertools tests it already
 def grouper(iterable, n, *, incomplete="fill", fillvalue=None):

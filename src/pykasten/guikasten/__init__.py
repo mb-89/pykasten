@@ -31,8 +31,7 @@ def import_deps():
     """
     import PySide6  # noqa: F401
     import pyqtgraph
-    from pyqtgraph.dockarea.Dock import Dock
-    from pyqtgraph.dockarea.DockArea import DockArea
+    from pykasten.guikasten.docking import Dock, DockArea
 
     global qt, pg, dk, da
     qt = pyqtgraph.Qt

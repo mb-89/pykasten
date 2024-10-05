@@ -40,7 +40,7 @@ poe commands:
 
 ### running tests on subsets of all tests
 - see [pyproject.toml/tool.pytest.ini_options/markers](../pyproject.toml) for all available test markers.
-- you can use poe test -m marker name to only test some of the markers.
+- you can use poe test -m "<marker_name>" to only test some of the markers.
 - a special marker is "repeat": poe test -m repeat. This repeats the last cli call and can be used to the
 tests and coverage against examples (see debugging tipps below).
 - also, you can filter by test name using poe test -k "<your_inclusion_pattern>".

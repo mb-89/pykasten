@@ -16,11 +16,11 @@ class pkLogger(logging.getLoggerClass()):
         self.tfmt = "%Y-%m-%d %H:%M:%S"
         self.hdl_dict = {}
 
-    def log(self, lvl, src, message):
+    def msg(self, lvl, src, message):
         """Log a message."""
         if isinstance(lvl, str):
             lvl = logging.getLevelNamesMapping().get(lvl.upper(), logging.INFO)
-        super().log(lvl, message, extra={"src": src})
+        self.log(lvl, message, extra={"src": src})
 
 
 setup_done = False
@@ -83,7 +83,7 @@ def setDstFile(path: Path, doLog: bool = True, maxAge_min=-1, maxCnt=0):
         path = Path(ps).resolve()
     path.parent.mkdir(parents=True, exist_ok=True)
     if not doLog and (h := log.hdl_dict.pop(path, None)):
-        log.log("info", "logkasten", f"stopping logging into {path}")
+        log.msg("info", "logkasten", f"stopping logging into {path}")
         log.removeHandler(h)
     if doLog:
         if maxAge_min > 0:
@@ -94,15 +94,12 @@ def setDstFile(path: Path, doLog: bool = True, maxAge_min=-1, maxCnt=0):
         h.setFormatter(f)
         log.addHandler(h)
         log.hdl_dict[path] = h
-        log.log("info", "logkasten", f"started logging into {path}")
+        log.msg("info", "logkasten", f"started logging into {path}")
+        return path
 
 
 def setDstObj(obj, doLog: bool = True):
-    """Add any object that can accept messages, or remove it if doLog is false.
-
-    Usually, this means an object that inherits from LogDst, or a class that we
-    know and we can attach a logger to.
-    """
+    """Add any object that can accept messages, or remove it if doLog is false."""
     fn = getattr(obj, "log_acceptStreamHandler", None)
     if not fn:
         return
@@ -111,7 +108,7 @@ def setDstObj(obj, doLog: bool = True):
     ID = id(obj)
     tp = type(obj)
     if not doLog and (h := log.hdl_dict.pop(ID, None)):
-        log.log("info", "logkasten", f"stopping logging into {tp}")
+        log.msg("info", "logkasten", f"stopping logging into {tp}")
         log.removeHandler(h)
         fn = getattr(obj, "log_removeStreamHandler", None)
         if fn:
@@ -129,4 +126,4 @@ def setDstObj(obj, doLog: bool = True):
     log.hdl_dict[ID] = h
     if fn:
         fn(h)
-    log.log("info", "logkasten", f"started logging into {tp}")
+    log.msg("info", "logkasten", f"started logging into {tp}")
